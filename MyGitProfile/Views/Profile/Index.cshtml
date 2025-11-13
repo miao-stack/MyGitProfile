@@ -1,0 +1,80 @@
+﻿@model MyGitProfile.Models.GitHubUser
+@{
+    ViewData["Title"] = Model.Name;
+}
+<div class="row g-4">
+    <!-- Left Column: Profile, Skills, Experience, Education -->
+    <div class="col-lg-4">
+        <!-- Profile Card -->
+        <div class="card p-4 text-center">
+            <img src="@Model.AvatarUrl" class="rounded-circle shadow mb-3 mx-auto d-block" width="120" height="120" alt="Avatar" />
+
+            <h2>@Model.Name</h2>
+            <p class="text-muted">@Model.Bio</p>
+        </div>
+
+        <!-- Skills Card -->
+        <div class="card p-4 mt-4">
+            <h4 class="mb-3">Skills</h4>
+            <div class="d-flex flex-wrap gap-3 fs-3 text-secondary">
+                <i class="devicon-csharp-plain"></i>
+                <i class="devicon-dot-net-plain"></i>
+                <i class="devicon-html5-plain"></i>
+                <i class="devicon-css3-plain"></i>
+                <i class="devicon-react-original"></i>
+                <i class="devicon-blazor-plain"></i>
+                <i class="devicon-git-plain"></i>
+            </div>
+            <div class="mt-3">
+                <span class="badge bg-secondary me-2">MVC</span>
+                <span class="badge bg-secondary me-2">Web API</span>
+                <span class="badge bg-secondary me-2">TDD</span>
+                <span class="badge bg-secondary me-2">Unit Test</span>
+            </div>
+        </div>
+
+        <!-- Experience Card -->
+        <div class="card p-4 mt-4">
+            <h4 class="mb-3">Experience</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Graphic Designer – USA</strong><br />Worked on IT marketing with a senior UX designer.</li>
+                <li class="list-group-item"><strong>Remote UX Designer – NL</strong><br />Built a rental platform with friends during the pandemic.</li>
+                <li class="list-group-item"><strong>Intern – France</strong><br />Interactive art studio internship during master's.</li>
+            </ul>
+        </div>
+
+        <!-- Education Card -->
+        <div class="card p-4 mt-4">
+            <h4 class="mb-3">Education</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>.NET developer with C#</strong><br />VDAB, Belgium</li>
+                <li class="list-group-item"><strong>HTML/CSS</strong><br />Cousera, Online</li>
+                <li class="list-group-item"><strong>Master création numérique</strong><br />Université Toulouse Jean Jaurès, France</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right Column: Projects -->
+    <div class="col-lg-8">
+        <div class="card p-4">
+            <h4 class="mb-3">Projects</h4>
+            <div class="row g-3">
+                @foreach (var repo in Model.Repositories)
+                {
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0">
+                            <div class="card-body">
+                                <h5 class="card-title">@repo.Name</h5>
+                                <p class="card-text text-muted">@repo.Description</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center">
+                                <small class="text-muted">⭐ @repo.StargazersCount • @repo.Language</small>
+                                <a href="@repo.HtmlUrl" class="btn btn-sm btn-outline-primary">View</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
